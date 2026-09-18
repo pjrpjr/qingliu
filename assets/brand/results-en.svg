@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 400" width="880" height="400" role="img" aria-label="Same dataset · 37 confirmed spam accounts vs 141 clean ones">
+  <style>
+    .title { font: 600 17px -apple-system, "PingFang SC", "Segoe UI", sans-serif; fill: #1f2328; }
+    .panel { font: 600 14px -apple-system, "PingFang SC", "Segoe UI", sans-serif; fill: #1f2328; }
+    .row   { font: 13px -apple-system, "PingFang SC", "Segoe UI", sans-serif; fill: #57606a; }
+    .value { font: 600 13px -apple-system, "PingFang SC", "Segoe UI", sans-serif; }
+    .note  { font: 11.5px -apple-system, "PingFang SC", "Segoe UI", sans-serif; fill: #8c959f; }
+    .miss  { font: 600 13.5px -apple-system, "PingFang SC", "Segoe UI", sans-serif; fill: #1f2328; }
+    .misss { font: 12.5px -apple-system, "PingFang SC", "Segoe UI", sans-serif; fill: #1a7f37; }
+  </style>
+  <rect width="880" height="400" fill="#ffffff"/>
+  <text x="40" y="46" class="title">Same dataset · 37 confirmed spam accounts vs 141 clean ones</text>
+
+  <text x="40" y="96" class="panel">Spam caught (recall, higher is better)</text>
+  <text x="40" y="135" class="row">778 keyword rules (original)</text>
+  <rect x="208" y="122" width="162.3" height="20" rx="5" fill="#8c959f"/>
+  <text x="380" y="136" class="value" fill="#57606a">54.1%</text>
+  <text x="40" y="169" class="row">Qingliu · Jev standard</text>
+  <rect x="208" y="156" width="170.4" height="20" rx="5" fill="#1a7f37"/>
+  <text x="388" y="170" class="value" fill="#1a7f37">56.8%</text>
+  <text x="40" y="203" class="row">Qingliu · Jev deep clean</text>
+  <rect x="208" y="190" width="202.8" height="20" rx="5" fill="#1a7f37"/>
+  <text x="421" y="204" class="value" fill="#1a7f37">67.6%</text>
+
+  <text x="40" y="236" class="panel">Real users wrongly flagged (false positives, lower is better)</text>
+  <text x="40" y="275" class="row">778 keyword rules (original)</text>
+  <rect x="208" y="262" width="234.0" height="20" rx="5" fill="#bf8700"/>
+  <text x="452" y="276" class="value" fill="#57606a">7.8%</text>
+  <text x="40" y="309" class="row">Qingliu · Jev standard</text>
+  <rect x="208" y="296" width="21.0" height="20" rx="5" fill="#1a7f37"/>
+  <text x="239" y="310" class="value" fill="#1a7f37">0.7%</text>
+  <text x="40" y="343" class="row">Qingliu · Jev deep clean</text>
+  <rect x="208" y="330" width="171.0" height="20" rx="5" fill="#bf8700"/>
+  <text x="389" y="344" class="value" fill="#57606a">5.7%</text>
+
+  <rect x="40" y="352" width="800" height="34" rx="8" fill="#f6f8fa"/>
+  <text x="56" y="373" class="miss">17 spam accounts the keyword layer never matches →</text>
+  <text x="1712" y="373" class="misss">Qingliu's AI layer catches 8 of them (47%)</text>
+
+  <text x="40" y="394" class="note">Source: jev/RESULTS.md · criteria were pre-registered before any measurement</text>
+</svg>

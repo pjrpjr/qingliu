@@ -1,0 +1,30 @@
+{
+  "name": "@qingliu/extension",
+  "version": "0.7.5",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wxt",
+    "preview:popup": "vite --config vite.preview.config.mjs",
+    "build": "wxt build",
+    "zip": "wxt zip",
+    "postinstall": "wxt prepare",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.5",
+    "@wxt-dev/module-react": "^1.2.2",
+    "typescript": "^5.9.3",
+    "wxt": "^0.21.4"
+  },
+  "dependencies": {
+    "@qingliu/block-queue": "workspace:*",
+    "@qingliu/community-lists": "workspace:*",
+    "@qingliu/detector": "workspace:*",
+    "@qingliu/jev-detect": "workspace:*",
+    "@qingliu/x-adapter": "workspace:*",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  }
+}

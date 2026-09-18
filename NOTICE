@@ -1,0 +1,31 @@
+FeedSieve-derived work — attribution notice
+==========================================
+
+This project is a derivative work of **FeedSieve / 福滤娃**, originally created by
+陈大黄 (@realchendahuang) and contributors:
+
+    https://github.com/realchendahuang/feedsieve   (upstream; repository now private)
+    https://github.com/sdpong/feedsieve            (public mirror this fork is based on)
+
+Upstream is licensed under the MIT License. The original copyright notice is retained
+verbatim in LICENSE, as MIT requires:
+
+    Copyright (c) 2026 FeedSieve contributors
+
+What this fork adds
+-------------------
+An AI verdict layer ("Jev layer") that upstream planned from v0.5 onward but never
+shipped — see jev/RESULTS.md, jev/PREREGISTRATION.md and packages/jev-detect/.
+
+Trademarks and naming
+---------------------
+* "FeedSieve" and "福滤娃" are the upstream project's names and are used here only to
+  describe lineage. They are not this project's brand.
+* "Jev" is a product of TypeSafe AI. This project merely calls their public API; the
+  naming here is descriptive ("powered by Jev"), not a claim on their trademark.
+
+Data
+----
+The evaluation datasets are NOT distributed with this repository: they contain real
+account profiles and private following lists. Only methods and aggregate numbers are
+published. See jev/RESULTS.md §6.

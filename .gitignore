@@ -1,0 +1,23 @@
+node_modules/
+dist/
+.output/
+.wxt/
+.wrangler/
+.env
+.env.*
+!.env.example
+.DS_Store
+coverage/
+*.tsbuildinfo
+*.log
+
+# Jev 判定层（本地会话/缓存，绝不入库）
+jev/.cache/
+__pycache__/
+*.pyc
+
+# 评测数据集：含真实账号资料与第三方隐私，公开仓库不放（只放方法与聚合数字）
+jev/data/
+
+# 内部战略文档（商业化方案等）
+.private/
