@@ -6,15 +6,15 @@
 
 | 材料                    | 路径                                                                | 状态                         |
 | ----------------------- | ------------------------------------------------------------------- | ---------------------------- |
-| 商店 ZIP                | `apps/extension/.output/feedsieve-v<版本>-chrome.zip`               | `scripts/pack-store.sh` 产出 |
+| 商店 ZIP                | `apps/extension/.output/qingliu-<版本>-chrome.zip`               | `scripts/pack-store.sh` 产出 |
 | ZIP checksum            | 同目录 `.sha256`                                                    | 脚本产出                     |
 | 商店图标 128×128        | `apps/extension/public/icon-128.png`                                | 已就绪                       |
 | 截图 1280×800 ×2~3      | `assets/store/screenshot-*.png`                                     | 真机拍摄                     |
 | 宣传图 440×280          | `assets/store/promo-440x280.png`                                    | 已就绪                       |
 | 跑马灯 1400×560（可选） | `assets/store/marquee-1400x560.png`                                 | 已就绪                       |
-| 隐私政策 URL            | `https://github.com/realchendahuang/feedsieve/blob/main/PRIVACY.md` | 已就绪                       |
-| 支持链接                | `https://github.com/realchendahuang/feedsieve/issues`               | 已就绪                       |
-| 主页                    | `https://github.com/realchendahuang/feedsieve`                      | —                            |
+| 隐私政策 URL            | `https://github.com/pjrpjr/qingliu/blob/main/PRIVACY.md` | 已就绪                       |
+| 支持链接                | `https://github.com/pjrpjr/qingliu/issues`               | 已就绪                       |
+| 主页                    | `https://github.com/pjrpjr/qingliu`                      | —                            |
 
 打包命令（自动跑 verify + 构建 + manifest/ZIP 审计 + checksum）：
 
@@ -65,7 +65,7 @@ bash scripts/pack-store.sh
   • 你维护的白名单匿名上传为负样本：账号名与当时的检测规则，帮助纠正误标
 
   隐私（一行版）：凭证、推文原文和关注列表不出设备，只同步你明确维护的黑白名单；可在设置中关闭。
-  完整政策：https://github.com/realchendahuang/feedsieve/blob/main/PRIVACY.md
+  完整政策：https://github.com/pjrpjr/qingliu/blob/main/PRIVACY.md
 
   适用范围：x.com。标注永不隐藏 · 误伤可撤销。
   ```
@@ -75,7 +75,8 @@ bash scripts/pack-store.sh
 
 ## 4. 隐私标签（Privacy）
 
-- **单一用途声明**：
+- **单一用途声明**（本次上架口径，务必与之一致）：
+  X 时间线的垃圾账号识别与清理。识别结果只用于在页面上加黄框提示，拉黑动作全部由用户点击触发。
 
   ```text
   在 X 时间线上识别并标注垃圾账号，并在用户明确点击时通过 X 原生接口执行拉黑/撤销。
@@ -86,8 +87,17 @@ bash scripts/pack-store.sh
   | 权限                                               | 用途                                                                 |
   | -------------------------------------------------- | -------------------------------------------------------------------- |
   | `storage`                                          | 缓存社区名单快照、用户设置、本地统计、已拉黑记录                     |
-  | 主机权限 `https://x.com/*`                         | 内容脚本在时间线识别账号并标注；用户点击时经 X 自身会话执行拉黑/撤销 |
-  | 主机权限 `https://feedsieve-api.chendahuang.com/*` | 自有 API：下载经校验的社区名单快照；开启名单上传时同步匿名黑白标签   |
+  | 权限 `storage`                        | 本机保存设置、白名单、拉黑队列与统计；AI key 也只存本机 |
+  | 主机权限 `https://x.com/*`             | 内容脚本在时间线识别账号并标注；用户点击时经 X 自身会话执行拉黑/撤销 |
+  | 主机权限 `https://api.typesafe.ai/*`   | **仅在用户显式开启「AI 判定」并填入自己的 key 后**，用于把账号资料发去换取垃圾号概率。默认关闭时零请求 |
+
+- **AI 判定层的数据披露（新增，必须如实勾选）**：
+  用户**显式开启**「AI 判定（Jev）」并填入自己的 API key 后，扩展会把该账号的
+  handle / 昵称 / 简介 / 粉丝关注推文数 / 注册时间 / 是否默认头像 / 蓝标 /
+  **当前时间线可见的推文正文** / 外链域名 发送至 `api.typesafe.ai`（TypeSafe AI），
+  用于返回 0–1 的垃圾号概率。**不发送**：X 登录凭证、安装 ID、关注保护名单、
+  浏览历史、私信、与判定无关的页面内容。请求由扩展背景页直连 TypeSafe，
+  不经过任何自建服务器；结果本机缓存 7 天。**默认关闭**，关闭时内容不出设备。
 
 - **数据使用勾选**（收集 = 离开设备的数据）：
   - ✅ 网站内容（Website content）——拉黑对象的话术指纹（单向哈希）与外链域名
@@ -95,7 +105,7 @@ bash scripts/pack-store.sh
   - ✅ 唯一标识符（Unique identifiers）——本机随机安装 ID，服务端仅存加盐哈希
   - ❌ 其余全部不收集（PII、认证信息、通信、位置、浏览历史等）
 - **合规声明**：按表单逐条勾选（不出售数据、仅按披露用途使用、不用于与单一用途无关的目的等），均与实现一致。
-- **隐私政策 URL**：`https://github.com/realchendahuang/feedsieve/blob/main/PRIVACY.md`
+- **隐私政策 URL**：`https://github.com/pjrpjr/qingliu/blob/main/PRIVACY.md`
 
 ## 5. 审核员说明（Notes for reviewers，直接粘贴）
 
@@ -157,7 +167,7 @@ No remote code
 Data handling
 - Browsing history, DMs, passwords, and cookies are never collected. Original
   tweet text never leaves the device (only one-way hashes). Privacy policy:
-  https://github.com/realchendahuang/feedsieve/blob/main/PRIVACY.md
+  https://github.com/pjrpjr/qingliu/blob/main/PRIVACY.md
 ```
 
 ## 6. 分发与提交
