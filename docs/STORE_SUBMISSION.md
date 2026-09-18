@@ -193,3 +193,114 @@ Data handling
 2. 更新 `docs/RELEASES.md`（只写事实，不写形容词）。
 3. `bash scripts/pack-store.sh` → commit → tag → 上传新 ZIP → 提交审核。
 4. 商店审核通过即覆盖旧版本；如需回滚，在 Dashboard 重新上传上一个 tag 构建的 ZIP。
+
+---
+
+## 9. 上架文案（清流口径，可直接复制粘贴）
+
+> 全部材料已就绪：截图 `assets/store/screenshot-{1,2,3,4}.png`（1280×800，真实截图，
+> 第三方内容与评测者 handle 已模糊处理）、小宣传图 `assets/store/promo-440x280.png`、
+> 跑马灯 `assets/store/marquee-1400x560.png`、ZIP 见 Release。
+
+| 字段 | 内容 | 限制 |
+|---|---|---|
+| **名称** | `清流 Qingliu` | ≤45 字符 |
+| **简短说明** | `黄框标出 X 上的垃圾账号，一键原生拉黑、全端同步消失。默认不联网，AI 判定层可选开启，永不自动拉黑。` | ≤132 字符 |
+| **类别** | 社交网络（Social Networking） | — |
+| **语言** | 中文（简体）为主，English 为次 | — |
+| **主页** | `https://github.com/pjrpjr/qingliu` | — |
+| **支持** | `https://github.com/pjrpjr/qingliu/issues` | — |
+| **隐私政策** | `https://github.com/pjrpjr/qingliu/blob/main/PRIVACY.md` | 必填 |
+
+**详细说明（中文，可直接粘贴）**：
+
+```
+清流是 X（Twitter）时间线的垃圾账号清理工具。它把识别结果做成页面上的黄框提示，
+拉黑动作全部由你点击触发，走你已登录页面的原生菜单，服务端生效、手机端同步消失。
+
+【三层识别，AI 只做最后一层】
+1. 社区/内置名单命中 —— 直接黄框
+2. 话术指纹（SimHash）—— 换号但复用同一套话术也认得出来
+3. 关键词库（778 条公开规则）—— 命中后给人工确认黄框
+4. AI 判定（Jev，默认关闭）—— 前三层全没认出时才问一次
+
+AI 层排在最后，所以它永远不会覆盖名单、也不会覆盖你自己写的关键词。
+
+【实测数字（判据在测量前已冻结，方法完全公开）】
+在同一批 37 个确认垃圾号 / 141 个干净账号上：
+· 误杀正常人 0.7%（778 条关键词方案在同批数据上是 7.8%）
+· 抓到垃圾号 56.8%（关键词方案 54.1%）
+· 词库完全认不出的垃圾号，AI 层另外抓到 47%
+· 单账号判定成本约 $0.000032，10 个账号合并为一次调用
+
+【产品红线】
+· 标注永不隐藏内容 —— 只加黄框，不改页面可见性
+· 所有拉黑由你显式触发 —— 没有"全自动清理"，AI 判定甚至不进批量候选
+· 误标一键放回，你的「误标？」会作为纠错证据帮我们调阈值
+
+【隐私】
+· 名单 / 指纹 / 词库匹配全部在本机完成，零网络请求
+· 你的关注列表只存本机，永不上传
+· AI 判定层默认关闭。开启后才会把账号资料（handle、昵称、简介、粉丝关注数、
+  注册时间、是否默认头像、蓝标、当前可见的推文正文、外链域名）发送给
+  api.typesafe.ai 换取 0-1 的垃圾号概率；不发送登录凭证、安装 ID、关注名单、
+  浏览历史或私信。结果本机缓存 7 天，同一账号不重复发送
+· 完整中英文政策见仓库 PRIVACY.md
+
+【开源】
+基于 FeedSieve（MIT，原作者陈大黄）的衍生作品，原始版权声明完整保留。
+本项目同样以 MIT 开源，欢迎审计与自部署。
+```
+
+**详细说明（English，第二语言可选）**：
+
+```
+Qingliu cleans up spam accounts on your X (Twitter) timeline. Detections appear as a
+yellow review frame — nothing is ever hidden — and every block is triggered by your own
+click through X's native menu, so it takes effect server-side and syncs to your phone.
+
+Four detection layers, with AI last: community/built-in lists, content fingerprints
+(SimHash), 778 public keyword rules, and an optional AI verdict layer (Jev) that only
+runs when the first three miss — so it can never override your lists or your own keywords.
+
+Measured on 37 confirmed spam accounts and 141 clean ones, with criteria frozen before
+measurement: 0.7% false positives (a 778-rule keyword layer gets 7.8% on the same data),
+56.8% recall, and 47% of the spam the keyword layer never matches. About $0.000032 per
+account, ten accounts batched per call.
+
+Red lines: marks never hide content; every block is user-triggered; the AI layer never
+auto-blocks. Privacy: list/fingerprint/keyword matching happens entirely on-device with
+zero network requests, and the AI layer is off by default — enabling it sends account
+profile text to api.typesafe.ai, never your credentials, install ID, following list or DMs.
+
+MIT, forked from FeedSieve with attribution.
+```
+
+---
+
+## 10. 提交点击路径（照着点即可）
+
+> 前置：一个 Google 账号 + 一次性 **$5** 开发者注册费（Chrome Web Store 收，不是我们收）。
+
+1. 打开 <https://chrome.google.com/webstore/devconsole>，用你的 Google 账号登录
+2. 若从未注册：点 **Become a developer** → 同意条款 → 付 $5 → 填公开的开发者名称与邮箱
+   （公开邮箱会显示在商店页，介意的话用一个专用邮箱）
+3. 点 **New item** → 上传 `qingliu-0.7.5-chrome.zip`
+   （就是 GitHub Release 里那个；**上传成功即代表包结构被 Google 接受**）
+4. **Store listing** 标签：按第 9 节粘贴名称 / 简短说明 / 详细说明，
+   上传 `assets/store/screenshot-{1,2,3,4}.png`（顺序建议：2 → 3 → 4 → 1）、
+   `promo-440x280.png`；类别选「社交网络」
+5. **Privacy** 标签：按第 4 节逐条勾选。重点两条——
+   - 用途：**Functionality**（不是广告、不是分析）
+   - 数据：勾选「Personal communications」类的**文本**（因为 AI 层会发推文正文），
+     并在说明里写明"仅在用户显式开启 AI 判定后、发往 api.typesafe.ai、可一键关闭"
+6. **Distribution** 标签：可见性选 Public，地区全选（或先选几个）
+7. 提交审核 → 通常 1–3 个工作日。被问任何问题，把第 4 节与 `PRIVACY.md` 的对应段落贴回去
+
+**提交前自检清单**：
+
+- [ ] ZIP 能在 `chrome://extensions` 加载并正常标注（本地已实测通过）
+- [ ] manifest 权限只有 `storage` + `x.com` + `api.typesafe.ai` 三项
+- [ ] 隐私政策 URL 可公开访问（`PRIVACY.md` 已在仓库根目录）
+- [ ] 截图 1280×800、无 cookie 横幅、无第三方隐私信息（已按要求模糊处理）
+- [ ] 商店名称与 manifest 里的 `name` 一致（都是「清流 Qingliu」）
