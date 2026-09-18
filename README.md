@@ -57,6 +57,12 @@
   <img src="assets/brand/results-zh.svg" width="880" alt="词库层与 Jev 判定层的召回 / 误杀对比" />
 </p>
 
+<p align="center">
+  <img src="assets/store/screenshot-2-marked.png" width="880" alt="真实截图：AI 层在 x.com 上标出一条成人引流帖（内容与账号已模糊处理）" />
+  <br>
+  <sub>真实截图（内容与账号名已模糊处理）：关键词层没认出，AI 层判「色情引流 97%」并给出黄框</sub>
+</p>
+
 | | 778 条关键词（原版） | 清流 · Jev 标准档 |
 |---|---:|---:|
 | 抓到垃圾号（召回） | 54.1% | **56.8%** |
@@ -75,11 +81,16 @@
 - **公开名单会腐坏**：881 条现成黄推名单里 **84% 的账号已经注销** ——
   这正说明为什么"名单"不够，需要能**当场判**的一层。
 
+**真机验证过，不是只跑了单测**：用 Playwright 驱动真实 Chromium 加载扩展、以真实 x.com 会话跑通
+「内容脚本 → 后台 → Jev API → 阈值 → 黄框」全链路。第一次跑就抓到一个**关键词层完全没命中**的
+成人引流号（网盘链接导流）—— 这是上面那张表里「词库认不出的还能抓 47%」在生产形态下的当场复现。
+方法见 [`jev/RESULTS.md`](jev/RESULTS.md) 第五节。
+
 ---
 
 ## 30 秒上手
 
-1. 到 [Releases](../../releases/latest) 下载 `qingliu-*-chrome.zip` 并解压
+1. 到 [Releases](../../releases/latest) 下载 `qingliu-*-chrome.zip` 并解压（Chrome 应用商店版本在审核中）
 2. 打开 `chrome://extensions` → 右上角开启**开发者模式** → **加载已解压的扩展程序** → 选解压出的目录
 3. 打开 [x.com](https://x.com) 正常刷。垃圾账号会被**黄框**标出，点「拉黑」即走 X 原生拉黑
 
