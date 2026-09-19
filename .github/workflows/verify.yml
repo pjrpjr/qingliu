@@ -15,9 +15,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      # 不写 version：package.json 里的 packageManager 已经钉死了版本，
+      # 两边都写会报 "Multiple versions of pnpm specified"（第一次 CI 就挂在这）
       - uses: pnpm/action-setup@v4
-        with:
-          version: 11
       - uses: actions/setup-node@v4
         with:
           node-version: 22
