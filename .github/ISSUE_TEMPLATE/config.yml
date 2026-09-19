@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 安装与使用说明
+    url: https://github.com/pjrpjr/qingliu#30-秒上手
+    about: 还没装上的话先看这里
+  - name: 评测方法与实测数字
+    url: https://github.com/pjrpjr/qingliu/blob/main/jev/RESULTS.md
+    about: 阈值是怎么定的、误杀率怎么量的

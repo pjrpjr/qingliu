@@ -1,0 +1,67 @@
+name: 它判错了（误标 / 漏标）
+description: 报告一个判错的账号。每一条都会变成阈值标定的样本。
+title: "[判错] @"
+labels: ["misclassified", "data"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **谢谢——这份报告比 star 有用得多。**
+        每一次误标/漏标都会被汇总进阈值重标定的样本集：
+        误标是难负样本，漏标是难正样本，两者都直接决定下一版阈值卡在哪。
+
+        > 提交前请**把对方 handle 换成 `@xxx` 或只贴链接**，别贴截图里的真人内容。
+  - type: dropdown
+    id: kind
+    attributes:
+      label: 哪一类问题
+      options:
+        - 误标：这是正常人/正常账号，却被黄框标了
+        - 漏标：这是垃圾号，却没被标出来
+        - 标对了但理由不对（分类/依据选错了）
+    validations:
+      required: true
+  - type: input
+    id: handle
+    attributes:
+      label: 账号
+      description: handle 或主页链接
+      placeholder: "@example 或 https://x.com/..."
+    validations:
+      required: true
+  - type: dropdown
+    id: source
+    attributes:
+      label: 黄框上写的来源是什么
+      description: 鼠标悬浮黄框，或看标注理由
+      options:
+        - 社区名单中的垃圾账号
+        - 与已确认垃圾账号发布的内容高度相似
+        - 包含可疑推广链接
+        - 内容包含成人引流特征
+        - AI 疑似（会带一个百分比）
+        - 不记得了
+    validations:
+      required: true
+  - type: input
+    id: score
+    attributes:
+      label: 如果理由是 AI 判定，百分比是多少
+      placeholder: "例如 87%"
+  - type: textarea
+    id: why
+    attributes:
+      label: 为什么你认为它判错了
+      description: |
+        最有用的一句话是：**这个账号实际在做什么**。
+        例如"这是我同事，他在发健身照片" / "这是个卖课的，但不算垃圾号"。
+      placeholder: 这个账号实际是……
+    validations:
+      required: true
+  - type: checkboxes
+    id: consent
+    attributes:
+      label: 数据使用
+      options:
+        - label: 我同意把这条报告（handle + 判定 + 理由）用于阈值标定与回归测试
+          required: false

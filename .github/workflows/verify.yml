@@ -1,0 +1,27 @@
+name: verify
+
+# 上游刻意不用云端 CI（门禁全在本地）。这里加回来有两个理由：
+#   1. 公开仓库的绿色徽章是信任信号 —— 别人看的是"它真的能构建、测试真的过"；
+#   2. 你自己改完推上去，坏没坏不用手动跑一遍。
+# 本地 `pnpm verify` 仍是权威门禁，CI 只是同一套命令的复读。
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --no-frozen-lockfile
+      # 与本地完全同一条命令：lint + 词库校验 + typecheck + 全部测试 + 构建扩展
+      - run: pnpm verify

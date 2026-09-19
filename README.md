@@ -11,6 +11,7 @@
 </p>
 
 <p align="center">
+  <a href="../../actions/workflows/verify.yml"><img src="../../actions/workflows/verify.yml/badge.svg" alt="verify" /></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue" alt="MIT" /></a>
   <img src="https://img.shields.io/badge/based%20on-FeedSieve%20(MIT)-lightgrey" alt="based on FeedSieve" />
   <img src="https://img.shields.io/badge/AI%20layer-off%20by%20default-success" alt="AI layer off by default" />
